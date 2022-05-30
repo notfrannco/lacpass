@@ -5,12 +5,12 @@
       <server>  
         <id>dgc-github</id>  
         <username>notfrannco</username>  
-        <password>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</password>  
+        <password>${app.packages.password}</password>  
       </server>  
       <server>  
         <id>ehd-github</id>  
         <username>notfrannco</username>  
-        <password>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</password>  
+        <password>${app.packages.password}</password>  
       </server>  
     </servers>  
 </settings>
