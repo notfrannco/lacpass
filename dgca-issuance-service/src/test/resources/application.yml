@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active:
+    - test
+  application:
+    name: dgca-issuance-service
+  liquibase:
+    change-log: classpath:db/changelog.xml
+  main:
+    allow-bean-definition-overriding: true
+issuance:
+  dgciPrefix: URN:UVCI:V1:DE
+  keyStoreFile: certs/test.jks
+  keyStorePassword: dgca
+  certAlias: edgc_dev_ec
+  privateKeyPassword: dgca
+  countryCode: DE
+  tanExpirationHours: 24
+  expiration:
+    vaccination: 365
+    recovery: 365
+    test: 3
+  endpoints:
+    frontendIssuing: true
+    backendIssuing: true
+    testTools: true
+    wallet: true
+    publishCert: true
+    did: true
+springdoc:
+  api-docs:
+    path: /api/docs
+  swagger-ui:
+    path: /swagger

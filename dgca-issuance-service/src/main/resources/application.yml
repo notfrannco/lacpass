@@ -1,0 +1,80 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: dgca-issuance-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:dgc;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;
+    username: sa
+    password: ''
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog.xml
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+management:
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /management
+      exposure:
+        include: info,health
+info:
+  name: ${spring.application.name}
+  profiles: ${spring.profiles.active}
+springdoc:
+  api-docs:
+    path: /api/docs
+    enabled: true
+  swagger-ui:
+    path: /swagger
+issuance:
+  dgciPrefix: URN:UVCI:V1:DE
+  keyStoreFile: certs/test.jks
+  keyStorePassword: dgca
+  certAlias: dev_ec
+  privateKeyPassword: dgca
+  countryCode: DE
+  tanExpirationHours: 2
+  contextFile: context/context.json
+  expiration:
+    vaccination: 365
+    recovery: 365
+    test: 3
+  endpoints:
+    frontendIssuing: true
+    backendIssuing: false
+    testTools: false
+    wallet: true
+    publishCert: true
+    did: true
+dgc:
+  gateway:
+    connector:
+      enabled: false
+#      endpoint: https://dgc-gateway.example.com
+#      proxy:
+#        enabled: false
+#      max-cache-age: 300
+#      tls-trust-store:
+#        password: dgcg-p4ssw0rd
+#        path: classpath:tls_trust_store.p12
+#      tls-key-store:
+#        alias: 1
+#        password: dgcg-p4ssw0rd
+#        path: classpath:tls_key_store.p12
+#      trust-anchor:
+#        alias: ta
+#        password: dgcg-p4ssw0rd
+#        path: classpath:trust_anchor.jks
