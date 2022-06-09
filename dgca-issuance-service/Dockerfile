@@ -5,7 +5,7 @@ FROM maven:3.6.0-jdk-11-slim AS build
 COPY src /home/app/src
 COPY ./pom.xml /home/app
 COPY ./settings.xml /home/app
-RUN mvn -s /home/app/settings.xml -f /home/app/pom.xml clean package
+RUN mvn -s /home/app/settings.xml -f /home/app/pom.xml -U clean install -Dcheckstyle.skip
 
 
 #
