@@ -3,6 +3,7 @@
 #
 FROM maven:3.6.0-jdk-11-slim AS build
 COPY src /home/app/src
+COPY certs/ /app/
 COPY ./pom.xml /home/app
 COPY ./settings.xml /home/app
 COPY ./certs/signing.jks /home/app/certs/
