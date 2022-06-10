@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #DEFINIR COUNTRY
-COUNTRY=Chile
-COUNTRY_CODE=CL
+COUNTRY=Paraguay
+COUNTRY_CODE=PY
 PASSWORD=dgcg-p4ssw0rd
 
 mkdir $COUNTRY_CODE
@@ -24,7 +24,7 @@ openssl req -x509 -new -days 1461 -newkey ec:<(openssl ecparam -name prime256v1)
 
 #LLAVES CREDENCIAL
 openssl req -newkey ec:<(openssl ecparam -name prime256v1) -keyout $COUNTRY_CODE/DSC01privkey.key -nodes -out $COUNTRY_CODE/DSC01csr.pem -utf8 \
--subj "/C=$COUNTRY_CODE/O=Gobierno de $COUNTRY/OU=Ministerio de Salud/CN=Gestión de Credencial de Inmunización";
+-subj "/C=$COUNTRY_CODE/O=Gobierno de $COUNTRY/OU=Ministerio de Salud/CN=MSPBS";
 
 openssl x509 -req -in $COUNTRY_CODE/DSC01csr.pem -CA $COUNTRY_CODE/cert_csca.pem -CAkey $COUNTRY_CODE/key_csca.pem -CAcreateserial -days 730 \
                     -extensions ext -extfile dsc.conf -out $COUNTRY_CODE/DSCcert.pem;
