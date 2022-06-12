@@ -11,5 +11,6 @@ RUN yarn && yarn build
 FROM nginxinc/nginx-unprivileged as app
 COPY --from=build ./app/build /usr/share/nginx/html
 COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+RUN chown -R 101:101 /etc/nginx/*
 ENV SERVER_PORT=80
 ENV DGCA_ISSUANCE_SERVICE_URL=http://localhost:8080
