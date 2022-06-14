@@ -8,7 +8,7 @@ RUN yarn && yarn build
 
 #FROM nginx:1.19.10 as app
 #FROM nginx:1.19 as app
-FROM nginxinc/nginx-unprivileged as app # work
+FROM nginxinc/nginx-unprivileged as app
 #FROM rhel8/nginx-120 as app # doesn't work
 #FROM nginx:latest as app # ultima version de nginx 1.20 de docker errores de permisos
 COPY --from=build ./app/build /usr/share/nginx/html
